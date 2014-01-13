@@ -167,6 +167,12 @@
     <Compile Include="..\..\..\aforge\Sources\System.Drawing\Pen.cs">
       <Link>Pen.cs</Link>
     </Compile>
+    <Compile Include="..\..\..\aforge\Sources\System.Drawing\Point.cs">
+      <Link>Point.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\aforge\Sources\System.Drawing\PointF.cs">
+      <Link>PointF.cs</Link>
+    </Compile>
     <Compile Include="..\..\..\aforge\Sources\System.Drawing\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
@@ -184,6 +190,15 @@
     </Compile>
     <Compile Include="..\..\..\aforge\Sources\System.Drawing\Quantizers\IColorQuantizer.cs">
       <Link>Quantizers\IColorQuantizer.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\aforge\Sources\System.Drawing\Rectangle.cs">
+      <Link>Rectangle.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\aforge\Sources\System.Drawing\Size.cs">
+      <Link>Size.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\aforge\Sources\System.Drawing\SizeF.cs">
+      <Link>SizeF.cs</Link>
     </Compile>
     <Compile Include="..\..\..\aforge\Sources\System.Drawing\SystemColors.cs">
       <Link>SystemColors.cs</Link>
