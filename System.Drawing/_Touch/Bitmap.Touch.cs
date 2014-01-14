@@ -36,9 +36,26 @@ namespace System.Drawing
 
 		public static implicit operator CGImage(Bitmap bitmap)
 		{
+			var bytesPerRow = bitmap._stride;
+
+			CGColorSpace colorSpace;
+			CGImageAlphaInfo bitmapInfo;
+			switch (bitmap._pixelFormat)
+			{
+				case PixelFormat.Format32bppPArgb:
+					colorSpace = CGColorSpace.CreateDeviceRGB();
+					bitmapInfo = CGImageAlphaInfo.PremultipliedLast;
+					break;
+				case PixelFormat.Format8bppIndexed:
+					colorSpace = CGColorSpace.CreateDeviceGray();
+					bitmapInfo = CGImageAlphaInfo.None;
+					break;
+				default:
+					throw new InvalidOperationException();
+			}
 			using (
-				var context = new CGBitmapContext(bitmap._scan0, bitmap._width, bitmap._height, 8, 4 * bitmap._width,
-					CGColorSpace.CreateDeviceRGB(), CGImageAlphaInfo.PremultipliedLast))
+				var context = new CGBitmapContext(bitmap._scan0, bitmap._width, bitmap._height, 8, bytesPerRow, colorSpace,
+					bitmapInfo))
 			{
 				return context.ToImage();
 			}
