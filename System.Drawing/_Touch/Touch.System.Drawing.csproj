@@ -10,7 +10,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>System.Drawing</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
-    <AssemblyName>AForge.System.Drawing</AssemblyName>
+    <AssemblyName>Shim.System.Drawing</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -124,6 +124,9 @@
     </Compile>
     <Compile Include="..\..\..\aforge\Sources\System.Drawing\Helpers\Pixels\NonIndexed\PixelDataGray16.cs">
       <Link>Helpers\Pixels\NonIndexed\PixelDataGray16.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\aforge\Sources\System.Drawing\Helpers\Pixels\NonIndexed\PixelDataPArgb8888.cs">
+      <Link>Helpers\Pixels\NonIndexed\PixelDataPArgb8888.cs</Link>
     </Compile>
     <Compile Include="..\..\..\aforge\Sources\System.Drawing\Helpers\Pixels\NonIndexed\PixelDataRgb48.cs">
       <Link>Helpers\Pixels\NonIndexed\PixelDataRgb48.cs</Link>

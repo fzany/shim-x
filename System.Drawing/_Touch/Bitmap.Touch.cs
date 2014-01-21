@@ -1,16 +1,16 @@
-﻿// AForge Image Processing Library
-// AForge.NET framework
-// http://www.aforgenet.com/framework/
+﻿//
+// AForge Image Processing Library
+// Portable AForge.NET framework
+// https://github.com/cureos/aforge
 //
-// Portable Adaptations
+// Shim.System.Drawing
 //
-// Copyright © Cureos AB, 2013
+// Copyright © Cureos AB, 2013-2014
 // info at cureos dot com
 //
 
 using System.Drawing.Imaging;
 using System.IO;
-using System.Runtime.InteropServices;
 using MonoTouch.CoreGraphics;
 
 namespace System.Drawing

@@ -1,13 +1,15 @@
-﻿// AForge Image Processing Library
-// AForge.NET framework
-// http://www.aforgenet.com/framework/
+﻿//
+// AForge Image Processing Library
+// Portable AForge.NET framework
+// https://github.com/cureos/aforge
 //
-// Portable Adaptations
+// Shim.System.Drawing
 //
-// Copyright © Cureos AB, 2013
+// Copyright © Cureos AB, 2013-2014
 // info at cureos dot com
 //
 
+using System.Linq;
 using MonoTouch.CoreGraphics;
 
 namespace System.Drawing
@@ -23,9 +25,16 @@ namespace System.Drawing
 
 		public static implicit operator Color(CGColor cgColor)
 		{
-			// TODO Check validity of RGB selection
-			return FromArgb((int)(255.0f * cgColor.Alpha), (int)(255.0f * cgColor.Components[0]),
-				(int)(255.0f * cgColor.Components[1]), (int)(255.0f * cgColor.Components[2]));
+			var components = cgColor.Components.Select(component => (int)(255.0f * component)).ToList();
+			switch (cgColor.NumberOfComponents)
+			{
+				case 2:
+					return FromArgb(components[1], components[0], components[0], components[0]);
+				case 4:
+					return FromArgb(components[3], components[0], components[1], components[2]);
+				default:
+					throw new ArgumentException("Invalid number of color components", "cgColor");
+			}
 		}
 
 		#endregion
