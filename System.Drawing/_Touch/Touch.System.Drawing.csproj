@@ -10,7 +10,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>System.Drawing</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
-    <AssemblyName>Shim.System.Drawing</AssemblyName>
+    <AssemblyName>Shim.Drawing</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -67,6 +67,9 @@
     </Compile>
     <Compile Include="..\..\..\aforge\Sources\System.Drawing\ColorCaches\Octree\OctreeColorCache.cs">
       <Link>ColorCaches\Octree\OctreeColorCache.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\aforge\Sources\System.Drawing\CopyPixelOperation.cs">
+      <Link>CopyPixelOperation.cs</Link>
     </Compile>
     <Compile Include="..\..\..\aforge\Sources\System.Drawing\Ditherers\IColorDitherer.cs">
       <Link>Ditherers\IColorDitherer.cs</Link>
@@ -196,10 +199,9 @@
     <Compile Include="TypeForwarding.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\..\aforge\Sources\System.Drawing\_Licenses\CPOL_PixelFormatConversion.htm">
-      <Link>_Licenses\CPOL_PixelFormatConversion.htm</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <Content Include="..\..\..\aforge\Sources\System.Drawing\CPOL_PixelFormatConversion.htm">
+      <Link>CPOL_PixelFormatConversion.htm</Link>
+    </Content>
   </ItemGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>

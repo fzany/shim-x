@@ -34,7 +34,7 @@ namespace System.Drawing
 
 		#region OPERATORS
 
-		public static implicit operator CGImage(Bitmap bitmap)
+		public static explicit operator CGImage(Bitmap bitmap)
 		{
 			var bytesPerRow = bitmap._stride;
 
@@ -61,7 +61,7 @@ namespace System.Drawing
 			}
 		}
 
-		public static implicit operator Bitmap(CGImage cgImage)
+		public static explicit operator Bitmap(CGImage cgImage)
 		{
 			var width = cgImage.Width;
 			var pixelFormat = GetPixelFormat(cgImage.ColorSpace, cgImage.BitmapInfo);
