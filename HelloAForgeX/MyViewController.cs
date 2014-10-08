@@ -1,64 +1,38 @@
-using MonoTouch.UIKit;
-using System.Drawing;
+// Copyright (c) 2010-2014 Anders Gustafsson, Cureos AB.
+// All rights reserved. Any unauthorised reproduction of this 
+// material will constitute an infringement of copyright.
 
-namespace HelloAForgeX
+namespace HelloAForgeTouch
 {
+    using System.Drawing;
+
     using MonoTouch.CoreGraphics;
+    using MonoTouch.UIKit;
 
     public class MyViewController : UIViewController
-	{
-		private UIImage image;
+    {
+        private UIImage image;
 
-		UIButton button;
-		int numClicks = 0;
-		float buttonWidth = 200;
-		float buttonHeight = 50;
+        public override void ViewDidLoad()
+        {
+            base.ViewDidLoad();
 
-		public MyViewController()
-		{
-		}
+            this.View.Frame = UIScreen.MainScreen.Bounds;
+            this.View.BackgroundColor = UIColor.White;
+            this.View.AutoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight;
 
-		public override void ViewDidLoad()
-		{
-			base.ViewDidLoad();
+            this.image = UIImage.FromResource(null, "HelloAForgeTouch.Images.coins.jpg");
 
-			View.Frame = UIScreen.MainScreen.Bounds;
-			View.BackgroundColor = UIColor.White;
-			View.AutoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight;
+            var bitmap = (Bitmap)this.image.CGImage;
+            var filter1 = AForge.Imaging.Filters.Grayscale.CommonAlgorithms.RMY;
+            bitmap = filter1.Apply(bitmap);
+            var filter2 = new AForge.Imaging.Filters.CannyEdgeDetector();
+            filter2.ApplyInPlace(bitmap);
 
-/*			button = UIButton.FromType(UIButtonType.RoundedRect);
+            var imageView = new UIImageView(new UIImage((CGImage)bitmap)) { Frame = this.View.Frame };
+            this.View.AddSubview(imageView);
+        }
 
-			button.Frame = new RectangleF(
-				View.Frame.Width / 2 - buttonWidth / 2,
-				View.Frame.Height / 2 - buttonHeight / 2,
-				buttonWidth,
-				buttonHeight);
-
-			button.SetTitle("Click me", UIControlState.Normal);
-
-			button.TouchUpInside += (object sender, EventArgs e) =>
-			{
-				button.SetTitle(String.Format("clicked {0} times", numClicks++), UIControlState.Normal);
-			};
-
-			button.AutoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleTopMargin |
-				UIViewAutoresizing.FlexibleBottomMargin;
-
-			View.AddSubview(button);
- */
-			image = UIImage.FromResource(null, "HelloAForgeX.Images.coins.jpg");
-
-			Bitmap bitmap = (Bitmap)image.CGImage;
-			var filter1 = AForge.Imaging.Filters.Grayscale.CommonAlgorithms.RMY;
-			bitmap = filter1.Apply(bitmap);
-			var filter2 = new AForge.Imaging.Filters.CannyEdgeDetector();
-			filter2.ApplyInPlace(bitmap);
-//			bitmap = AForge.Imaging.Image.Clone(bitmap, PixelFormat.Format32bppArgb);
-
-			var imageView = new UIImageView(new UIImage((CGImage)bitmap)) { Frame = View.Frame };
-			View.AddSubview(imageView);
-		}
-
-	}
+    }
 }
 

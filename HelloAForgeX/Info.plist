@@ -15,7 +15,7 @@
 	<key>MinimumOSVersion</key>
 	<string>3.2</string>
 	<key>CFBundleDisplayName</key>
-	<string>helloaforgex</string>
+	<string>HelloAForgeTouch</string>
 	<key>CFBundleIdentifier</key>
 	<string>cureos</string>
 	<key>CFBundleVersion</key>
