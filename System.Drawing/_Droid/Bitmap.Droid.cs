@@ -19,14 +19,14 @@
  *  along with Shim.NET.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-using System.Drawing.Imaging;
-using System.IO;
-
 namespace System.Drawing
 {
+    using System.IO;
     using System.Runtime.InteropServices;
 
     using Java.Nio;
+
+    using PixelFormat = System.Drawing.Imaging.PixelFormat;
 
     public sealed partial class Bitmap
     {
@@ -34,22 +34,80 @@ namespace System.Drawing
 
         public static Bitmap FromStream(Stream stream)
         {
-            throw new NotImplementedException();
+            var androidBitmap = Android.Graphics.BitmapFactory.DecodeStream(stream);
+            return (Bitmap)androidBitmap;
         }
 
         private static PixelFormat GetPixelFormat(Android.Graphics.Format androidPixelFormat)
         {
             switch (androidPixelFormat)
             {
-                // TODO Add other supported formats.
                case Android.Graphics.Format.A8:
-                    return PixelFormat.Alpha;
+                    return PixelFormat.PAlpha;
                 case Android.Graphics.Format.Rgb565:
                     return PixelFormat.Format16bppRgb565;
+                case Android.Graphics.Format.Rgb888:
+                    return PixelFormat.Format24bppRgb;
+                case Android.Graphics.Format.Rgba5551:
+                    return PixelFormat.Format16bppArgb1555;
                 case Android.Graphics.Format.Rgba8888:
-                    return PixelFormat.Format32bppArgb;
+                    return PixelFormat.Format32bppPArgb;
                 default:
-                    throw new ArgumentOutOfRangeException("config", androidPixelFormat, "Unsupported Android Bitmap configuration.");
+                    throw new ArgumentOutOfRangeException(
+                        "androidPixelFormat",
+                        androidPixelFormat,
+                        "Unsupported Android pixel format.");
+            }
+        }
+
+        private static Android.Graphics.Bitmap.Config GetAndroidBitmapConfig(PixelFormat pixelFormat)
+        {
+            switch (pixelFormat)
+            {
+                case PixelFormat.Format32bppPArgb:
+                    return Android.Graphics.Bitmap.Config.Argb8888;
+                case PixelFormat.Format16bppRgb565:
+                    return Android.Graphics.Bitmap.Config.Rgb565;
+                case PixelFormat.PAlpha:
+                    return Android.Graphics.Bitmap.Config.Alpha8;
+                default:
+                    throw new ArgumentOutOfRangeException(
+                        "pixelFormat",
+                        pixelFormat,
+                        "Unsupported pixel format for Android");
+            }
+        }
+
+        private static Bitmap GetAndroidAdaptedBitmap(Bitmap bitmap)
+        {
+            switch (bitmap._pixelFormat)
+            {
+                case PixelFormat.PAlpha:
+                case PixelFormat.Format16bppRgb565:
+                case PixelFormat.Format32bppPArgb:
+                    return bitmap;
+                case PixelFormat.Format16bppArgb1555:
+                case PixelFormat.Format24bppRgb:
+                case PixelFormat.Format32bppArgb:
+                case PixelFormat.Format32bppRgb:
+                case PixelFormat.Format48bppRgb:
+                case PixelFormat.Format64bppArgb:
+                case PixelFormat.Format64bppPArgb:
+                case PixelFormat.Format1bppIndexed:
+                case PixelFormat.Format4bppIndexed:
+                case PixelFormat.Format8bppIndexed:
+                case PixelFormat.Indexed:
+                    return bitmap.Clone(PixelFormat.Format32bppPArgb);
+                case PixelFormat.Format16bppGrayScale:
+                case PixelFormat.Format16bppRgb555:
+                    return bitmap.Clone(PixelFormat.Format16bppRgb565);
+                case PixelFormat.Alpha:
+                    return bitmap.Clone(PixelFormat.PAlpha);
+                default:
+                    throw new ArgumentOutOfRangeException(
+                        "pixelFormat",
+                        bitmap._pixelFormat,
+                        "Unsupported pixel format for Android");
             }
         }
 
@@ -59,30 +117,18 @@ namespace System.Drawing
 
         public static explicit operator Android.Graphics.Bitmap(Bitmap bitmap)
         {
-            var width = bitmap._width;
-            var height = bitmap._height;
-            var rowBytes = bitmap._stride;
+            var adaptedBitmap = GetAndroidAdaptedBitmap(bitmap);
 
-            Android.Graphics.Bitmap.Config config;
-            switch (bitmap._pixelFormat)
-            {
-                case PixelFormat.Format32bppArgb:
-                    config = Android.Graphics.Bitmap.Config.Argb8888;
-                    break;
-                case PixelFormat.Format16bppRgb565:
-                    config = Android.Graphics.Bitmap.Config.Rgb565;
-                    break;
-                case PixelFormat.Alpha:
-                    config = Android.Graphics.Bitmap.Config.Alpha8;
-                    break;
-                default:
-                    throw new InvalidOperationException();
-            }
+            var width = adaptedBitmap._width;
+            var height = adaptedBitmap._height;
+            var rowBytes = adaptedBitmap._stride;
+
+            var config = GetAndroidBitmapConfig(adaptedBitmap._pixelFormat);
 
             var androidBitmap = Android.Graphics.Bitmap.CreateBitmap(width, height, config);
 
             var bytes = new byte[height * rowBytes];
-            Marshal.Copy(bitmap._scan0, bytes, 0, height * rowBytes);
+            Marshal.Copy(adaptedBitmap._scan0, bytes, 0, height * rowBytes);
 
             using (var buffer = ByteBuffer.Allocate(bytes.Length))
             {

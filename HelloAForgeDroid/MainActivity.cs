@@ -26,15 +26,14 @@ namespace HelloAForgeDroid
 
             var view = FindViewById<ImageView>(Resource.Id.imageView);
 
-            var image = Android.Graphics.BitmapFactory.DecodeResource(Resources, Resource.Drawable.coins);
+            var androidBitmap = Android.Graphics.BitmapFactory.DecodeResource(Resources, Resource.Drawable.coins);
 
-            var bitmap = (Bitmap)image;
+            var bitmap = (Bitmap)androidBitmap;
             bitmap = bitmap.Clone(PixelFormat.Format32bppArgb);
 
             var filter = new FiltersSequence(
                 new IFilter[] { Grayscale.CommonAlgorithms.RMY, new SobelEdgeDetector() });
             bitmap = filter.Apply(bitmap);
-            bitmap = bitmap.Clone(PixelFormat.Format32bppArgb);
 
             view.SetImageBitmap((Android.Graphics.Bitmap)bitmap);
             
