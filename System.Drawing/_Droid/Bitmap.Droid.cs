@@ -22,6 +22,7 @@
 namespace System.Drawing
 {
     using System.IO;
+    using System.Drawing.Imaging;
     using System.Runtime.InteropServices;
 
     using Java.Nio;
@@ -32,10 +33,30 @@ namespace System.Drawing
     {
         #region METHODS
 
-        public static Bitmap FromStream(Stream stream)
+        internal static Bitmap Create(Stream stream)
         {
             var androidBitmap = Android.Graphics.BitmapFactory.DecodeStream(stream);
-            return (Bitmap)androidBitmap;
+            return androidBitmap == null ? null : (Bitmap)androidBitmap;
+        }
+
+        internal void WriteTo(Stream stream, ImageFormat format)
+        {
+            Android.Graphics.Bitmap.CompressFormat compressFormat;
+            if (format.Equals(ImageFormat.Jpeg))
+            {
+                compressFormat = Android.Graphics.Bitmap.CompressFormat.Jpeg;
+            }
+            else if (format.Equals(ImageFormat.Png))
+            {
+                compressFormat = Android.Graphics.Bitmap.CompressFormat.Png;
+            }
+            else
+            {
+                throw new ArgumentOutOfRangeException("format", format, "Only supported formats are JPEG and PNG");
+            }
+
+            var androidBitmap = (Android.Graphics.Bitmap)this;
+            androidBitmap.Compress(compressFormat, 100, stream);
         }
 
         private static PixelFormat GetPixelFormat(Android.Graphics.Format androidPixelFormat)

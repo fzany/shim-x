@@ -25,60 +25,65 @@ using MonoTouch.CoreGraphics;
 
 namespace System.Drawing
 {
-	// TODO Implement methods and operators
-	public sealed partial class Bitmap
-	{
-		#region METHODS
+    // TODO Implement methods and operators
+    public sealed partial class Bitmap
+    {
+        #region METHODS
 
-		public static Bitmap FromStream(Stream stream)
-		{
-			throw new NotImplementedException();
-		}
+        internal static Bitmap Create(Stream stream)
+        {
+            throw new NotImplementedException();
+        }
 
-		private static PixelFormat GetPixelFormat(CGColorSpace colorSpace, CGBitmapFlags bitmapInfo)
-		{
-			return PixelFormat.Format32bppArgb;
-		}
+        internal void WriteTo(Stream stream, ImageFormat format)
+        {
+            throw new NotImplementedException("PCL");
+        }
 
-		#endregion
+        private static PixelFormat GetPixelFormat(CGColorSpace colorSpace, CGBitmapFlags bitmapInfo)
+        {
+            return PixelFormat.Format32bppArgb;
+        }
 
-		#region OPERATORS
+        #endregion
 
-		public static explicit operator CGImage(Bitmap bitmap)
-		{
-			var bytesPerRow = bitmap._stride;
+        #region OPERATORS
 
-			CGColorSpace colorSpace;
-			CGImageAlphaInfo bitmapInfo;
-			switch (bitmap._pixelFormat)
-			{
-				case PixelFormat.Format32bppPArgb:
-					colorSpace = CGColorSpace.CreateDeviceRGB();
-					bitmapInfo = CGImageAlphaInfo.PremultipliedLast;
-					break;
-				case PixelFormat.Format8bppIndexed:
-					colorSpace = CGColorSpace.CreateDeviceGray();
-					bitmapInfo = CGImageAlphaInfo.None;
-					break;
-				default:
-					throw new InvalidOperationException();
-			}
-			using (
-				var context = new CGBitmapContext(bitmap._scan0, bitmap._width, bitmap._height, 8, bytesPerRow, colorSpace,
-					bitmapInfo))
-			{
-				return context.ToImage();
-			}
-		}
+        public static explicit operator CGImage(Bitmap bitmap)
+        {
+            var bytesPerRow = bitmap._stride;
 
-		public static explicit operator Bitmap(CGImage cgImage)
-		{
-			var width = cgImage.Width;
-			var pixelFormat = GetPixelFormat(cgImage.ColorSpace, cgImage.BitmapInfo);
-			return new Bitmap(width, cgImage.Height, GetStride(width, pixelFormat), pixelFormat,
-				cgImage.DataProvider.CopyData().Bytes);
-		}
+            CGColorSpace colorSpace;
+            CGImageAlphaInfo bitmapInfo;
+            switch (bitmap._pixelFormat)
+            {
+                case PixelFormat.Format32bppPArgb:
+                    colorSpace = CGColorSpace.CreateDeviceRGB();
+                    bitmapInfo = CGImageAlphaInfo.PremultipliedLast;
+                    break;
+                case PixelFormat.Format8bppIndexed:
+                    colorSpace = CGColorSpace.CreateDeviceGray();
+                    bitmapInfo = CGImageAlphaInfo.None;
+                    break;
+                default:
+                    throw new InvalidOperationException();
+            }
+            using (
+                var context = new CGBitmapContext(bitmap._scan0, bitmap._width, bitmap._height, 8, bytesPerRow, colorSpace,
+                    bitmapInfo))
+            {
+                return context.ToImage();
+            }
+        }
 
-		#endregion
-	}
+        public static explicit operator Bitmap(CGImage cgImage)
+        {
+            var width = cgImage.Width;
+            var pixelFormat = GetPixelFormat(cgImage.ColorSpace, cgImage.BitmapInfo);
+            return new Bitmap(width, cgImage.Height, GetStride(width, pixelFormat), pixelFormat,
+                cgImage.DataProvider.CopyData().Bytes);
+        }
+
+        #endregion
+    }
 }

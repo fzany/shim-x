@@ -11,6 +11,7 @@ using System.Drawing;
 namespace HelloAForgeDroid
 {
     using System.Drawing.Imaging;
+    using System.IO;
 
     using AForge.Imaging.Filters;
 
@@ -34,6 +35,13 @@ namespace HelloAForgeDroid
             var filter = new FiltersSequence(
                 new IFilter[] { Grayscale.CommonAlgorithms.RMY, new SobelEdgeDetector() });
             bitmap = filter.Apply(bitmap);
+
+            using (var stream = new MemoryStream())
+            {
+                bitmap.Save(stream, ImageFormat.Png);
+                stream.Seek(0, SeekOrigin.Begin);
+                bitmap = (Bitmap)Image.FromStream(stream);
+            }
 
             view.SetImageBitmap((Android.Graphics.Bitmap)bitmap);
             
