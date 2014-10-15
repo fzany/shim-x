@@ -73,7 +73,7 @@
     <AndroidResource Include="Resources\drawable\Icon.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="..\HelloAForgeX\Images\coins.jpg">
+    <AndroidResource Include="..\HelloAForgeTouch\Images\coins.jpg">
       <Link>Resources\drawable\coins.jpg</Link>
     </AndroidResource>
     <Content Include="Properties\AndroidManifest.xml" />
