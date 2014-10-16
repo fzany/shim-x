@@ -23,6 +23,7 @@ namespace System.Drawing
 {
     using System.Drawing.Imaging;
     using System.IO;
+	using System.Runtime.InteropServices;
 
     using MonoTouch.CoreGraphics;
     using MonoTouch.Foundation;
@@ -81,7 +82,7 @@ namespace System.Drawing
                             switch (bitsPerComponent)
                             {
                                 case 8:
-                                    return PixelFormat.Format24bppRgb;  // Seems like 4 components are still sent, although one ignored?
+                                    return PixelFormat.Format32bppRgb;
                                 case 16:
                                     return PixelFormat.Format48bppRgb;
                                 default:
@@ -151,46 +152,53 @@ namespace System.Drawing
 
         public static explicit operator CGImage(Bitmap bitmap)
         {
+			var height = bitmap._height;
+			var width = bitmap._width;
             var bytesPerRow = bitmap._stride;
 
             int bitsPerComponent;
             CGColorSpace colorSpace;
-            CGImageAlphaInfo bitmapInfo;
+            CGImageAlphaInfo alphaInfo;
 
             switch (bitmap._pixelFormat)
             {
                 case PixelFormat.Format32bppRgb:
                     bitsPerComponent = 8;
                     colorSpace = CGColorSpace.CreateDeviceRGB();
-                    bitmapInfo = CGImageAlphaInfo.NoneSkipFirst;
+                    alphaInfo = CGImageAlphaInfo.NoneSkipLast;
                     break;
                 case PixelFormat.Format32bppArgb:
                     bitsPerComponent = 8;
                     colorSpace = CGColorSpace.CreateDeviceRGB();
-                    bitmapInfo = CGImageAlphaInfo.First;
+                    alphaInfo = CGImageAlphaInfo.PremultipliedLast;
                     break;
                 case PixelFormat.Format32bppPArgb:
                     bitsPerComponent = 8;
                     colorSpace = CGColorSpace.CreateDeviceRGB();
-                    bitmapInfo = CGImageAlphaInfo.PremultipliedFirst;
+                    alphaInfo = CGImageAlphaInfo.PremultipliedLast;
                     break;
                 case PixelFormat.Format16bppGrayScale:
                     bitsPerComponent = 16;
                     colorSpace = CGColorSpace.CreateDeviceGray();
-                    bitmapInfo = CGImageAlphaInfo.None;
+					alphaInfo = CGImageAlphaInfo.None;
                     break;
                 default:
                     throw new InvalidOperationException();
             }
+
+			var length = height * bytesPerRow;
+			var bytes = new byte[length];
+			Marshal.Copy (bitmap._scan0, bytes, 0, length);
+
             using (
                 var context = new CGBitmapContext(
-                    bitmap._scan0,
-                    bitmap._width,
-                    bitmap._height,
+                    bytes,
+                    width,
+                    height,
                     bitsPerComponent,
                     bytesPerRow,
                     colorSpace,
-                    bitmapInfo))
+                    alphaInfo))
             {
                 return context.ToImage();
             }
