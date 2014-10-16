@@ -6,6 +6,7 @@ namespace HelloAForgeTouch
 {
     using System.Drawing;
 	using System.Drawing.Imaging;
+	using System.IO;
 
     using MonoTouch.CoreGraphics;
     using MonoTouch.UIKit;
@@ -30,6 +31,13 @@ namespace HelloAForgeTouch
             var filter2 = new AForge.Imaging.Filters.CannyEdgeDetector();
             filter2.ApplyInPlace(bitmap);
 			bitmap = bitmap.Clone (PixelFormat.Format32bppPArgb);
+
+			using (var stream = new MemoryStream())
+			{
+				bitmap.Save(stream, ImageFormat.Png);
+				stream.Seek(0, SeekOrigin.Begin);
+				bitmap = (Bitmap)Image.FromStream(stream);
+			}
 
             var imageView = new UIImageView(new UIImage((CGImage)bitmap)) { Frame = this.View.Frame };
             this.View.AddSubview(imageView);
