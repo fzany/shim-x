@@ -1,7 +1,6 @@
 // Copyright (c) 2010-2014 Anders Gustafsson, Cureos AB.
 // All rights reserved. Any unauthorised reproduction of this 
 // material will constitute an infringement of copyright.
-
 namespace HelloAForgeTouch
 {
     using System.Drawing;
@@ -11,10 +10,10 @@ namespace HelloAForgeTouch
     using MonoTouch.CoreGraphics;
     using MonoTouch.UIKit;
 
+	using AForge.Imaging.Filters;
+
     public class MyViewController : UIViewController
     {
-        private UIImage image;
-
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
@@ -23,14 +22,11 @@ namespace HelloAForgeTouch
             this.View.BackgroundColor = UIColor.White;
             this.View.AutoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight;
 
-            this.image = UIImage.FromResource(null, "HelloAForgeTouch.Images.coins.jpg");
+            var image = UIImage.FromResource(null, "HelloAForgeTouch.Images.coins.jpg");
 
-            var bitmap = (Bitmap)this.image.CGImage;
-            var filter1 = AForge.Imaging.Filters.Grayscale.CommonAlgorithms.RMY;
-            bitmap = filter1.Apply(bitmap);
-            var filter2 = new AForge.Imaging.Filters.CannyEdgeDetector();
-            filter2.ApplyInPlace(bitmap);
-			bitmap = bitmap.Clone (PixelFormat.Format32bppPArgb);
+            var bitmap = (Bitmap)image.CGImage;
+			var filter = new FiltersSequence (Grayscale.CommonAlgorithms.RMY, new CannyEdgeDetector ());
+            bitmap = filter.Apply(bitmap);
 
 			using (var stream = new MemoryStream())
 			{
