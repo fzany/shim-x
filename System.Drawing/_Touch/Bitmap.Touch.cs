@@ -93,91 +93,100 @@ namespace System.Drawing
 			}
 		}
 
-		static CGColorSpace CreateColorSpace (ColorPalette palette)
+		private static CGColorSpace CreateColorSpace (ColorPalette palette)
 		{
 			throw new NotImplementedException ();
 		}
 
+		/// <summary>
+		/// Gets a Bitmap pixel format from the <see cref="CGImage"/> properties.
+		/// </summary>
+		/// <returns>The pixel format.</returns>
+		/// <param name="cgImage">CoreGraphics image.</param>
+		/// <remarks>List of iOS and Mac OSX supported pixel formats can be found 
+		/// <see cref="https://developer.apple.com/library/mac/documentation/graphicsimaging/conceptual/drawingwithquartz2d/dq_context/dq_context.html#//apple_ref/doc/uid/TP30001066-CH203-CJBEAGHH">here</see>.
+		/// </remarks>
         private static PixelFormat GetPixelFormat(CGImage cgImage)
         {
+			if (cgImage == null)
+				throw new ArgumentNullException ("cgImage");
+
             var alphaInfo = cgImage.AlphaInfo;
+			if (cgImage.ColorSpace == null && alphaInfo == CGImageAlphaInfo.Only)
+				return PixelFormat.Alpha;
+
             var bitsPerComponent = cgImage.BitsPerComponent;
-            var components = cgImage.ColorSpace.Components;
+			var bitsPerPixel = cgImage.BitsPerPixel;
             var model = cgImage.ColorSpace.Model;
             var unsupportedText =
                 String.Format(
-                    "Unsupported CGImage format. Model: {0}, Alpha: {1}, Components: {2}, Bits per component: {3}",
+                    "Unsupported CGImage format. Model: {0}, Alpha: {1}, Bits per pixel: {2}, Bits per component: {3}",
                     model,
                     alphaInfo,
-                    components,
+					bitsPerPixel,
                     bitsPerComponent);
 
-            switch (model)
-            {
-                case CGColorSpaceModel.RGB:
-                    switch (components)
-                    {
-                        case 3:
-                            switch (bitsPerComponent)
-                            {
-                                case 8:
-                                    return PixelFormat.Format32bppRgb;
-                                case 16:
-                                    return PixelFormat.Format48bppRgb;
-                                default:
-                                    throw new ArgumentException(unsupportedText);
-                            }
-                        case 4:
-                            switch (bitsPerComponent)
-                            {
-                                case 8:
-                                    switch (alphaInfo)
-                                    {
-                                        case CGImageAlphaInfo.First:
-                                            return PixelFormat.Format32bppArgb;
-                                        case CGImageAlphaInfo.PremultipliedFirst:
-                                            return PixelFormat.Format32bppPArgb;
-                                        case CGImageAlphaInfo.NoneSkipFirst:
-                                            return PixelFormat.Format32bppRgb;
-                                        default:
-                                            throw new ArgumentException(unsupportedText);
-                                    }
-                                case 16:
-                                    switch (alphaInfo)
-                                    {
-                                        case CGImageAlphaInfo.First:
-                                            return PixelFormat.Format64bppArgb;
-                                        case CGImageAlphaInfo.PremultipliedFirst:
-                                            return PixelFormat.Format64bppPArgb;
-                                        default:
-                                            throw new ArgumentException(unsupportedText);
-                                    }
-                                default:
-                                    throw new ArgumentException(unsupportedText);
-                            }
-                        default:
-                            throw new ArgumentException(unsupportedText);
-                    }
-                case CGColorSpaceModel.Monochrome:
-                    switch (bitsPerComponent)
-                    {
-                        case 16:
-                            return PixelFormat.Format16bppGrayScale;
-                        default:
-                            throw new ArgumentException(unsupportedText);
-                    }
-                case CGColorSpaceModel.Indexed:
-                    var baseComponents = cgImage.ColorSpace.GetBaseColorSpace().Components;
-                    var indexCount = cgImage.ColorSpace.GetColorTable().Length / baseComponents;
+			switch (model) {
+			case CGColorSpaceModel.RGB:
+				switch (bitsPerPixel) {
+				case 16:
+					switch (alphaInfo) {
+					case CGImageAlphaInfo.NoneSkipFirst:
+						return PixelFormat.Format16bppRgb555;
+					default:
+						throw new ArgumentException (unsupportedText);
+					}
+				case 32:
+					switch (alphaInfo) {
+					case CGImageAlphaInfo.None:
+					case CGImageAlphaInfo.NoneSkipLast:
+						return PixelFormat.Format32bppRgb;
+					case CGImageAlphaInfo.Last:
+						return PixelFormat.Format32bppArgb;
+					case CGImageAlphaInfo.PremultipliedLast:
+						return PixelFormat.Format32bppPArgb;
+					case CGImageAlphaInfo.NoneSkipFirst:
+					case CGImageAlphaInfo.PremultipliedFirst:
+						throw new NotImplementedException ("Support for 32 bpp alpha-first RGB images not yet implemented");
+					default:
+						throw new ArgumentException (unsupportedText);
+					}
+				case 64:
+					switch (alphaInfo) {
+					case CGImageAlphaInfo.PremultipliedLast:
+						return PixelFormat.Format64bppPArgb;
+					case CGImageAlphaInfo.NoneSkipLast:
+						throw new NotImplementedException ("Support for 64 bpp xRGB images not yet implemented");
+					default:
+						throw new ArgumentException (unsupportedText);
+					}
+				default:
+					throw new ArgumentException (unsupportedText);
+				}
+			case CGColorSpaceModel.Monochrome:
+				switch (bitsPerComponent) {
+				case 8:
+					throw new NotImplementedException ("Support for 8 bpp gray images not yet implemented");
+				case 16:
+					return PixelFormat.Format16bppGrayScale;
+				default:
+					throw new ArgumentException (unsupportedText);
+				}
+			case CGColorSpaceModel.Indexed:
+				var baseComponents = cgImage.ColorSpace.GetBaseColorSpace ().Components;
+				var indexCount = cgImage.ColorSpace.GetColorTable ().Length / baseComponents;
 
-                    if (indexCount <= 2) return PixelFormat.Format1bppIndexed;
-                    if (indexCount <= 16) return PixelFormat.Format4bppIndexed;
-                    if (indexCount <= 256) return PixelFormat.Format8bppIndexed;
+				if (indexCount < 2)
+					return PixelFormat.Format1bppIndexed;
+				if (indexCount < 16)
+					return PixelFormat.Format4bppIndexed;
+				if (indexCount < 256)
+					return PixelFormat.Format8bppIndexed;
 
-                    throw new ArgumentException(unsupportedText);
-                default:
-                    throw new ArgumentException(unsupportedText);
-            }
+				throw new ArgumentException (unsupportedText);
+			default:
+				throw new ArgumentException (unsupportedText);
+			}
         }
 
         private static ColorPalette CreatePalette(CGColorSpace colorSpace)
