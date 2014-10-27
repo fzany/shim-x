@@ -15,6 +15,9 @@
 @md "Publish\Android\Any CPU"
 @xcopy /k /r /v /y /exclude:exclude.txt System.Drawing\_Droid\bin\Release\Shim.Drawing.* "Publish\Android\Any CPU"
 
+@md "Publish\Universal\Any CPU"
+@xcopy /k /r /v /y /exclude:exclude.txt System.Drawing\_Universal\bin\Release\Shim.Drawing.* "Publish\Universal\Any CPU"
+
 @del /f exclude.txt
 
 @goto end
