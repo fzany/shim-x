@@ -130,6 +130,9 @@
     <Compile Include="..\..\..\aforge\Sources\System.Drawing\Helpers\Pixels\NonIndexed\PixelDataPArgb8888.cs">
       <Link>Helpers\Pixels\NonIndexed\PixelDataPArgb8888.cs</Link>
     </Compile>
+    <Compile Include="..\..\..\aforge\Sources\System.Drawing\Helpers\Pixels\NonIndexed\PixelDataPRgba8888.cs">
+      <Link>Helpers\Pixels\NonIndexed\PixelDataPRgba8888.cs</Link>
+    </Compile>
     <Compile Include="..\..\..\aforge\Sources\System.Drawing\Helpers\Pixels\NonIndexed\PixelDataRgb48.cs">
       <Link>Helpers\Pixels\NonIndexed\PixelDataRgb48.cs</Link>
     </Compile>
@@ -144,6 +147,9 @@
     </Compile>
     <Compile Include="..\..\..\aforge\Sources\System.Drawing\Helpers\Pixels\NonIndexed\PixelDataRgb8888.cs">
       <Link>Helpers\Pixels\NonIndexed\PixelDataRgb8888.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\aforge\Sources\System.Drawing\Helpers\Pixels\NonIndexed\PixelDataRgba8888.cs">
+      <Link>Helpers\Pixels\NonIndexed\PixelDataRgba8888.cs</Link>
     </Compile>
     <Compile Include="..\..\..\aforge\Sources\System.Drawing\Helpers\QuantizationHelper.cs">
       <Link>Helpers\QuantizationHelper.cs</Link>
