@@ -74,8 +74,8 @@ namespace System.Drawing
 			case PixelFormat.Format32bppPArgb:
 			case PixelFormat.Format64bppArgb:
 			case PixelFormat.Format64bppPArgb:
-			case PixelFormat.ProprietaryFormat32bppRgba:
-			case PixelFormat.ProprietaryFormat32bppPRgba:
+			case PixelFormat.Format32bppRgbaProprietary:
+			case PixelFormat.Format32bppPRgbaProprietary:
 				return bitmap.Clone (PixelFormat.Format32bppPArgb);
 			case PixelFormat.Format1bppIndexed:
 				return bitmap.Clone (PixelFormat.Format32bppPArgb); // TODO Change to Format1bppIndexed
@@ -149,9 +149,9 @@ namespace System.Drawing
 						return PixelFormat.Format32bppPArgb;
 					case CGImageAlphaInfo.First:
 					case CGImageAlphaInfo.NoneSkipFirst:
-						return PixelFormat.ProprietaryFormat32bppRgba;
+						return PixelFormat.Format32bppRgbaProprietary;
 					case CGImageAlphaInfo.PremultipliedFirst:
-						return PixelFormat.ProprietaryFormat32bppPRgba;
+						return PixelFormat.Format32bppPRgbaProprietary;
 					default:
 						throw new ArgumentException (unsupportedText);
 					}
