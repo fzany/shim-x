@@ -1,26 +1,24 @@
-﻿using System;
-
-using Android.App;
-using Android.Content.PM;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-using Android.OS;
-
-using Xamarin.Forms.Platform.Android;
+﻿// Copyright (c) 2010-2015 Anders Gustafsson, Cureos AB.
+// All rights reserved. Any unauthorised reproduction of this 
+// material will constitute an infringement of copyright.
 
 namespace HelloAForge.Droid
 {
+    using Android.App;
+    using Android.Content.PM;
+    using Android.OS;
+
+    using Xamarin.Forms;
+    using Xamarin.Forms.Platform.Android;
+
     [Activity(Label = "HelloAForge", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
-    public class MainActivity : AndroidActivity
+    public class MainActivity : FormsApplicationActivity
     {
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
-
-            Xamarin.Forms.Forms.Init(this, bundle);
-
-            SetPage(App.GetMainPage());
+            Forms.Init(this, bundle);
+            LoadApplication(new App());
         }
     }
 }

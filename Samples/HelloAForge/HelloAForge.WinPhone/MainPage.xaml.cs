@@ -1,26 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Navigation;
-using Microsoft.Phone.Controls;
-using Microsoft.Phone.Shell;
-
-using Xamarin.Forms;
-
+﻿// Copyright (c) 2010-2015 Anders Gustafsson, Cureos AB.
+// All rights reserved. Any unauthorised reproduction of this 
+// material will constitute an infringement of copyright.
 
 namespace HelloAForge.WinPhone
 {
-    public partial class MainPage : PhoneApplicationPage
+    using Microsoft.Phone.Controls;
+
+    public partial class MainPage
     {
         public MainPage()
         {
             InitializeComponent();
+            SupportedOrientations = SupportedPageOrientation.PortraitOrLandscape;
 
-            Forms.Init();
-            Content = HelloAForge.App.GetMainPage().ConvertPageToUIElement(this);
+            Xamarin.Forms.Forms.Init();
+            LoadApplication(new HelloAForge.App());
         }
     }
 }

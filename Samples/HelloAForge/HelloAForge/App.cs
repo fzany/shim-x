@@ -6,11 +6,11 @@ namespace HelloAForge
 {
     using Xamarin.Forms;
 
-    public class App
+    public class App : Application
     {
-        public static Page GetMainPage()
+        public App()
         {
-            return new MainPage();
+            MainPage = new MainPage();
         }
     }
 }
