@@ -3,8 +3,8 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7E461552-1F3A-4A76-B87C-9F67120D6C18}</ProjectGuid>
-    <ProjectTypeGuids>{6BC8ED88-2882-458C-8E55-DFD12B67127B};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{EC17B0A8-70C5-4EB3-BE13-2BD1091EF9CC}</ProjectGuid>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <RootNamespace>System.Drawing</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
@@ -35,9 +35,9 @@
     <DefineConstants>__MOBILE__;__IOS__</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="monotouch" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="Xamarin.iOS" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\..\aforge\Sources\Core\SystemTools.cs">
@@ -202,9 +202,15 @@
     <Compile Include="..\..\..\aforge\Sources\System.Drawing\SystemColors.cs">
       <Link>SystemColors.cs</Link>
     </Compile>
-    <Compile Include="Bitmap.Touch.cs" />
-    <Compile Include="Color.Touch.cs" />
-    <Compile Include="TypeForwarding.Touch.cs" />
+    <Compile Include="..\..\..\aforge\Sources\System.Drawing\PointF.cs">
+      <Link>PointF.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\aforge\Sources\System.Drawing\SizeF.cs">
+      <Link>SizeF.cs</Link>
+    </Compile>
+    <Compile Include="Bitmap.Unified.cs" />
+    <Compile Include="Color.Unified.cs" />
+    <Compile Include="TypeForwarding.Unified.cs" />
   </ItemGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
@@ -212,5 +218,5 @@
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>..\..\..\Shim.Drawing.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

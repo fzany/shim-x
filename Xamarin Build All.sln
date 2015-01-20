@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shim.Drawing", "Shim.Drawing", "{BAC0CE2F-5E18-46BA-A2E5-5C26B3EE5D82}"
 EndProject
@@ -27,6 +27,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloAForge.WinPhone", "Samples\HelloAForge\HelloAForge.WinPhone\HelloAForge.WinPhone.csproj", "{E2BD2EE5-ED30-4071-8BBE-993CB3B2D21D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Universal.Shim.Drawing", "System.Drawing\_Universal\Universal.Shim.Drawing.csproj", "{93C4F43C-6343-4708-93C5-90360EB7E06A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unified.Shim.Drawing", "System.Drawing\_Unified\Unified.Shim.Drawing.csproj", "{EC17B0A8-70C5-4EB3-BE13-2BD1091EF9CC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -174,6 +176,22 @@ Global
 		{93C4F43C-6343-4708-93C5-90360EB7E06A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{93C4F43C-6343-4708-93C5-90360EB7E06A}.Release|iPhone.ActiveCfg = Release|Any CPU
 		{93C4F43C-6343-4708-93C5-90360EB7E06A}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{EC17B0A8-70C5-4EB3-BE13-2BD1091EF9CC}.Ad-Hoc|Any CPU.ActiveCfg = Release|Any CPU
+		{EC17B0A8-70C5-4EB3-BE13-2BD1091EF9CC}.Ad-Hoc|Any CPU.Build.0 = Release|Any CPU
+		{EC17B0A8-70C5-4EB3-BE13-2BD1091EF9CC}.Ad-Hoc|iPhone.ActiveCfg = Release|Any CPU
+		{EC17B0A8-70C5-4EB3-BE13-2BD1091EF9CC}.Ad-Hoc|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{EC17B0A8-70C5-4EB3-BE13-2BD1091EF9CC}.AppStore|Any CPU.ActiveCfg = Release|Any CPU
+		{EC17B0A8-70C5-4EB3-BE13-2BD1091EF9CC}.AppStore|Any CPU.Build.0 = Release|Any CPU
+		{EC17B0A8-70C5-4EB3-BE13-2BD1091EF9CC}.AppStore|iPhone.ActiveCfg = Release|Any CPU
+		{EC17B0A8-70C5-4EB3-BE13-2BD1091EF9CC}.AppStore|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{EC17B0A8-70C5-4EB3-BE13-2BD1091EF9CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC17B0A8-70C5-4EB3-BE13-2BD1091EF9CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC17B0A8-70C5-4EB3-BE13-2BD1091EF9CC}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{EC17B0A8-70C5-4EB3-BE13-2BD1091EF9CC}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{EC17B0A8-70C5-4EB3-BE13-2BD1091EF9CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC17B0A8-70C5-4EB3-BE13-2BD1091EF9CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC17B0A8-70C5-4EB3-BE13-2BD1091EF9CC}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{EC17B0A8-70C5-4EB3-BE13-2BD1091EF9CC}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -186,6 +204,7 @@ Global
 		{2145C24A-5AA9-41D2-A02B-942AB16A0214} = {F6B318B2-E2AD-4A7C-AA99-1F9A1E8D348F}
 		{E2BD2EE5-ED30-4071-8BBE-993CB3B2D21D} = {F6B318B2-E2AD-4A7C-AA99-1F9A1E8D348F}
 		{93C4F43C-6343-4708-93C5-90360EB7E06A} = {BAC0CE2F-5E18-46BA-A2E5-5C26B3EE5D82}
+		{EC17B0A8-70C5-4EB3-BE13-2BD1091EF9CC} = {BAC0CE2F-5E18-46BA-A2E5-5C26B3EE5D82}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = HelloAForgeDroid\HelloAForgeDroid.csproj

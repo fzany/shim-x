@@ -1,7 +1,7 @@
 [Bb]in
 [Oo]bj
 [Pp]ackages
-[Pp]ublish
+[Pp]ublish*
 *.suo
 *.user
 *.dll.mdb

@@ -199,7 +199,7 @@
       <Link>Quantizers\IColorQuantizer.cs</Link>
     </Compile>
     <Compile Include="Bitmap.Droid.cs" />
-    <Compile Include="TypeForwarding.cs" />
+    <Compile Include="TypeForwarding.Droid.cs" />
   </ItemGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
