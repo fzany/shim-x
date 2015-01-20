@@ -10,10 +10,13 @@
 @if EXIST Publish (rd /s /q Publish)
 
 @md "Publish\iOS\Any CPU"
-@xcopy /k /r /v /y /exclude:exclude.txt System.Drawing\_Touch\bin\iPhone\Release\Shim.Drawing.* "Publish\iOS\Any CPU"
+@xcopy /k /r /v /y /exclude:exclude.txt System.Drawing\_Touch\bin\Release\Shim.Drawing.* "Publish\iOS\Any CPU"
 
 @md "Publish\Android\Any CPU"
 @xcopy /k /r /v /y /exclude:exclude.txt System.Drawing\_Droid\bin\Release\Shim.Drawing.* "Publish\Android\Any CPU"
+
+@md "Publish\Unified\Any CPU"
+@xcopy /k /r /v /y /exclude:exclude.txt System.Drawing\_Unified\bin\Release\Shim.Drawing.* "Publish\Unified\Any CPU"
 
 @md "Publish\Universal\Any CPU"
 @xcopy /k /r /v /y /exclude:exclude.txt System.Drawing\_Universal\bin\Release\Shim.Drawing.* "Publish\Universal\Any CPU"
