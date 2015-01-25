@@ -22,11 +22,16 @@
 namespace System.Drawing
 {
     using System.IO;
-    using System.Drawing.Imaging;
     using System.Runtime.InteropServices;
+
+    using Android.App;
+    using Android.Content;
+    using Android.Graphics;
+    using Android.Widget;
 
     using Java.Nio;
 
+    using ImageFormat = System.Drawing.Imaging.ImageFormat;
     using PixelFormat = System.Drawing.Imaging.PixelFormat;
 
     public sealed partial class Bitmap
@@ -157,7 +162,16 @@ namespace System.Drawing
                 buffer.Rewind();
                 androidBitmap.CopyPixelsFromBuffer(buffer);
             }
-            
+
+#if EVALUATION
+            var c = new Canvas(androidBitmap);
+            var p = new Paint();
+            p.SetARGB(255, 255, 0, 0);
+            p.TextSize =36f;
+            c.DrawText("For evaluation only.", 1f, 0.5f * height - 75f, p);
+            c.DrawText("Contact licenses@cureos.com", 1f, 0.5f * height - 25f, p);
+            c.DrawText("for full version.", 1f, 0.5f * height + 25f, p);
+#endif
             return androidBitmap;
         }
 

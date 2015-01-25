@@ -248,6 +248,11 @@ namespace System.Drawing
                     colorSpace,
                     alphaInfo))
             {
+#if EVALUATION
+                context.ShowTextAtPoint(0f, 0.5f * adaptedBitmap._height - 75f, "For evaluation only.");
+                context.ShowTextAtPoint(0f, 0.5f * adaptedBitmap._height - 25f, "Contact licenses@cureos.com");
+                context.ShowTextAtPoint(0f, 0.5f * adaptedBitmap._height + 25f, "for full version.");
+#endif
                 return context.ToImage();
             }
         }

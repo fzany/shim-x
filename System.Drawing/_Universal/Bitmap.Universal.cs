@@ -28,6 +28,7 @@ namespace System.Drawing
     using System.Threading.Tasks;
     using global::Windows.Graphics.Imaging;
     using global::Windows.Storage.Streams;
+    using global::Windows.UI.Popups;
     using global::Windows.UI.Xaml.Media.Imaging;
     using PixelFormat = System.Drawing.Imaging.PixelFormat;
 
@@ -130,6 +131,12 @@ namespace System.Drawing
 
             var bitmapImage = new WriteableBitmap(bitmap._width, bitmap._height);
             bitmapImage.PixelBuffer.AsStream().Write(bytes, 0, bytes.Length);
+
+#if EVALUATION
+            var dlg = new MessageDialog("For evaluation only.\nContact licenses@cureos.com,\nfor full version.");
+            dlg.Commands.Add(new UICommand("OK"));
+            Task.Run(async () => await dlg.ShowAsync()).Wait();
+#endif
 
             return bitmapImage;
         }
