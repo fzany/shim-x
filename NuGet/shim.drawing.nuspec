@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
+    <metadata>
+        <id>shim.drawing</id>
+        <version>2.2.5.50126</version>
+        <title>Shim Drawing</title>
+        <authors>Anders Gustafsson, Cureos AB</authors>
+        <licenseUrl>https://raw.githubusercontent.com/cureos/aforge/master/NuGet/LICENSE-shimdrawing.txt</licenseUrl>
+        <projectUrl>https://github.com/cureos/aforge</projectUrl>
+        <iconUrl>https://raw.githubusercontent.com/cureos/aforge/master/NuGet/shimdrawing.png</iconUrl>
+        <requireLicenseAcceptance>true</requireLicenseAcceptance>
+        <description>Shim.Drawing is a portability package providing a minimal subset of System.Drawing, that enables using the imaging processing functionality of AForge.NET and Accord.NET Frameworks in mobile applications.    
+This package contains evaluation DLL:s for Xamarin.iOS (Unified and Classic API:s), Xamarin Android and Windows Universal (Windows 8.1 and Windows Phone 8.1). Full versions can be purchased from Cureos, licenses@cureos.com .</description>
+        <summary>Shim.Drawing provides a minimal subset of System.Drawing for AForge.NET and Accord.NET.</summary>
+        <copyright>(c) 2013-2015 Anders Gustafsson, Cureos AB</copyright>
+        <releaseNotes>v 2.2.5.50126
+----------------
+* Added evaluation DLL:s for Xamarin iOS (Unified and Classic), Xamarin Android and Windows Universal (Windows 8.1 and Windows Phone 8.1)
+
+v 2.2.5.50122
+----------------
+* PCL library with Windows Phone Silverlight 8 and .NET/WPF specific implementations</releaseNotes>
+        <language>en-US</language>
+        <tags>PCL Shim System.Drawing .NET WPF WP8 Windows8.1 WPA81 Xamarin iOS Android</tags>
+        <dependencies>
+            <dependency id="shim" version="1.0.0.50126" />
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="..\..\aforge\Sources\System.Drawing\_WPF\bin\Release\Shim.Drawing.dll" target="lib\net45" />
+        <file src="..\..\aforge\Sources\System.Drawing\_WPF\bin\Release\Shim.Drawing.pdb" target="lib\net45" />
+        <file src="..\..\aforge\Sources\System.Drawing\bin\Release\Shim.Drawing.dll" target="lib\portable-net45+netcore45+wpa81+wp8" />
+        <file src="..\..\aforge\Sources\System.Drawing\bin\Release\Shim.Drawing.pdb" target="lib\portable-net45+netcore45+wpa81+wp8" />
+        <file src="..\..\aforge\Sources\System.Drawing\_Phone\bin\Release\Shim.Drawing.dll" target="lib\wp8" />
+        <file src="..\..\aforge\Sources\System.Drawing\_Phone\bin\Release\Shim.Drawing.pdb" target="lib\wp8" />
+        <file src="..\System.Drawing\_Unified\bin\Release\Shim.Drawing.dll" target="lib\Xamarin.iOS10" />
+        <file src="..\System.Drawing\_Unified\bin\Release\Shim.Drawing.pdb" target="lib\Xamarin.iOS10" />
+        <file src="..\System.Drawing\_Touch\bin\Release\Shim.Drawing.dll" target="lib\MonoTouch1" />
+        <file src="..\System.Drawing\_Touch\bin\Release\Shim.Drawing.pdb" target="lib\MonoTouch1" />
+        <file src="..\System.Drawing\_Droid\bin\Release\Shim.Drawing.dll" target="lib\MonoAndroid1" />
+        <file src="..\System.Drawing\_Droid\bin\Release\Shim.Drawing.pdb" target="lib\MonoAndroid1" />
+        <file src="..\System.Drawing\_Universal\bin\Release\Shim.Drawing.dll" target="lib\portable-win81+wpa81" />
+        <file src="..\System.Drawing\_Universal\bin\Release\Shim.Drawing.pdb" target="lib\portable-win81+wpa81" />
+    </files>
+</package>

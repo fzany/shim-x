@@ -223,11 +223,6 @@
     <Compile Include="Bitmap.Universal.cs" />
     <Compile Include="Color.Universal.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Reference Include="Shim">
-      <HintPath>..\..\Externals\Shim\Universal\Any CPU\Shim.dll</HintPath>
-    </Reference>
-  </ItemGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
