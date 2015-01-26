@@ -23,7 +23,6 @@ namespace System.Drawing
 {
     using System.Drawing.Imaging;
     using System.IO;
-    using System.Runtime.InteropServices;
 
     using MonoTouch.CoreGraphics;
     using MonoTouch.Foundation;
@@ -248,11 +247,13 @@ namespace System.Drawing
                     alphaInfo))
             {
 #if EVALUATION
-                context.SelectFont("Helvetica", 20, CGTextEncoding.MacRoman);
+                var fontSize = (float)(adaptedBitmap._width / 25);
+                context.SelectFont("Helvetica", fontSize, CGTextEncoding.MacRoman);
+                context.SetFillColor(new CGColor(255f, 0f, 0f));
                 context.SetTextDrawingMode(CGTextDrawingMode.Fill);
-                context.ShowTextAtPoint(0f, 0.5f * adaptedBitmap._height - 75f, "For evaluation only.", 20);
-                context.ShowTextAtPoint(0f, 0.5f * adaptedBitmap._height - 25f, "Contact licenses@cureos.com", 27);
-                context.ShowTextAtPoint(0f, 0.5f * adaptedBitmap._height + 25f, "for full version.", 17);
+                context.ShowTextAtPoint(1f, 1f + 2f * fontSize, "For evaluation only.", 20);
+                context.ShowTextAtPoint(1f, 1f + fontSize, "Contact licenses@cureos.com", 27);
+                context.ShowTextAtPoint(1f, 1f, "for full version.", 17);
 #endif
                 return context.ToImage();
             }

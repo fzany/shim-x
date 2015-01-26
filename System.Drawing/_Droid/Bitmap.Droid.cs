@@ -24,11 +24,6 @@ namespace System.Drawing
     using System.IO;
     using System.Runtime.InteropServices;
 
-    using Android.App;
-    using Android.Content;
-    using Android.Graphics;
-    using Android.Widget;
-
     using Java.Nio;
 
     using ImageFormat = System.Drawing.Imaging.ImageFormat;
@@ -164,13 +159,14 @@ namespace System.Drawing
             }
 
 #if EVALUATION
-            var c = new Canvas(androidBitmap);
-            var p = new Paint();
+            var textSize = (float)(width / 25);
+            var c = new Android.Graphics.Canvas(androidBitmap);
+            var p = new Android.Graphics.Paint();
             p.SetARGB(255, 255, 0, 0);
-            p.TextSize =36f;
-            c.DrawText("For evaluation only.", 1f, 0.5f * height - 75f, p);
-            c.DrawText("Contact licenses@cureos.com", 1f, 0.5f * height - 25f, p);
-            c.DrawText("for full version.", 1f, 0.5f * height + 25f, p);
+            p.TextSize = textSize;
+            c.DrawText("For evaluation only.", 1f, height - 1f - 3f * textSize, p);
+            c.DrawText("Contact licenses@cureos.com", 1f, height - 1f - 2f * textSize, p);
+            c.DrawText("for full version.", 1f, height - 1f - textSize, p);
 #endif
             return androidBitmap;
         }
