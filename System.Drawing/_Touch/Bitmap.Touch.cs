@@ -248,9 +248,11 @@ namespace System.Drawing
                     alphaInfo))
             {
 #if EVALUATION
-                context.ShowTextAtPoint(0f, 0.5f * adaptedBitmap._height - 75f, "For evaluation only.");
-                context.ShowTextAtPoint(0f, 0.5f * adaptedBitmap._height - 25f, "Contact licenses@cureos.com");
-                context.ShowTextAtPoint(0f, 0.5f * adaptedBitmap._height + 25f, "for full version.");
+                context.SelectFont("Helvetica", 20, CGTextEncoding.MacRoman);
+                context.SetTextDrawingMode(CGTextDrawingMode.Fill);
+                context.ShowTextAtPoint(0f, 0.5f * adaptedBitmap._height - 75f, "For evaluation only.", 20);
+                context.ShowTextAtPoint(0f, 0.5f * adaptedBitmap._height - 25f, "Contact licenses@cureos.com", 27);
+                context.ShowTextAtPoint(0f, 0.5f * adaptedBitmap._height + 25f, "for full version.", 17);
 #endif
                 return context.ToImage();
             }
