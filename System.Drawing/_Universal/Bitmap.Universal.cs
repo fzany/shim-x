@@ -18,6 +18,7 @@
  *  You should have received a copy of the GNU General Public License
  *  along with Shim.NET.  If not, see <http://www.gnu.org/licenses/>.
  */
+//#define EVALUATION
 
 namespace System.Drawing
 {
@@ -26,11 +27,11 @@ namespace System.Drawing
     using System.Runtime.InteropServices;
     using System.Runtime.InteropServices.WindowsRuntime;
     using System.Threading.Tasks;
+
     using global::Windows.Graphics.Imaging;
     using global::Windows.Storage.Streams;
-    using global::Windows.UI.Popups;
+    using global::Windows.UI.Xaml.Media;
     using global::Windows.UI.Xaml.Media.Imaging;
-    using PixelFormat = System.Drawing.Imaging.PixelFormat;
 
     public sealed partial class Bitmap
     {
@@ -121,22 +122,22 @@ namespace System.Drawing
 
         #region OPERATORS
 
-        public static explicit operator BitmapSource(Bitmap bitmap)
+        public static explicit operator ImageSource(Bitmap bitmap)
         {
             if (bitmap.PixelFormat != PixelFormat.Format32bppPArgb)
                 bitmap = bitmap.Clone(PixelFormat.Format32bppPArgb);
+
+#if EVALUATION
+            var g = Graphics.FromImage(bitmap);
+            g.DrawLine(new Pen(Color.Red), new Point(0, 0), new Point(bitmap.Width, bitmap.Height));
+            g.DrawLine(new Pen(Color.Red), new Point(0, bitmap.Height), new Point(bitmap.Width, 0));
+#endif
 
             var bytes = new byte[bitmap._stride * bitmap._height];
             Marshal.Copy(bitmap._scan0, bytes, 0, bytes.Length);
 
             var bitmapImage = new WriteableBitmap(bitmap._width, bitmap._height);
             bitmapImage.PixelBuffer.AsStream().Write(bytes, 0, bytes.Length);
-
-#if EVALUATION
-            var dlg = new MessageDialog("For evaluation only.\nContact licenses@cureos.com,\nfor full version.");
-            dlg.Commands.Add(new UICommand("OK"));
-            Task.Run(async () => await dlg.ShowAsync()).Wait();
-#endif
 
             return bitmapImage;
         }
