@@ -42,9 +42,6 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\..\aforge\Sources\Core\SystemTools.cs">
-      <Link>Support\SystemTools.cs</Link>
-    </Compile>
     <Compile Include="..\..\..\aforge\Sources\System.Drawing\Bitmap.cs">
       <Link>Bitmap.cs</Link>
     </Compile>

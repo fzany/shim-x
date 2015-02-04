@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
     <metadata>
         <id>shim.drawing</id>
-        <version>2.2.5.50126</version>
+        <version>2.2.5.50204</version>
         <title>Shim Drawing</title>
         <authors>Anders Gustafsson, Cureos AB</authors>
         <licenseUrl>https://raw.githubusercontent.com/cureos/aforge/master/NuGet/LICENSE-shimdrawing.txt</licenseUrl>
@@ -13,7 +13,11 @@
 This package contains evaluation DLL:s for Xamarin.iOS (Unified and Classic API:s), Xamarin Android and Windows Universal (Windows 8.1 and Windows Phone 8.1). Full versions can be purchased from Cureos, licenses@cureos.com .</description>
         <summary>Shim.Drawing provides a minimal subset of System.Drawing for AForge.NET and Accord.NET.</summary>
         <copyright>(c) 2013-2015 Anders Gustafsson, Cureos AB</copyright>
-        <releaseNotes>v 2.2.5.50126
+        <releaseNotes>v 2.2.5.50204
+----------------
+* Moved AForge.SystemTools back to AForge.Core
+
+v 2.2.5.50126
 ----------------
 * Added evaluation DLL:s for Xamarin iOS (Unified and Classic), Xamarin Android and Windows Universal (Windows 8.1 and Windows Phone 8.1)
 
@@ -23,7 +27,7 @@ v 2.2.5.50122
         <language>en-US</language>
         <tags>PCL Shim System.Drawing .NET WPF WP8 Windows8.1 WPA81 Xamarin iOS Android</tags>
         <dependencies>
-            <dependency id="shim" version="1.0.0.50126" />
+            <dependency id="shim" version="1.0.0.50204" />
         </dependencies>
     </metadata>
     <files>
