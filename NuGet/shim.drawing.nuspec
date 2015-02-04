@@ -27,7 +27,7 @@ v 2.2.5.50122
         <language>en-US</language>
         <tags>PCL Shim System.Drawing .NET WPF WP8 Windows8.1 WPA81 Xamarin iOS Android</tags>
         <dependencies>
-            <dependency id="shim" version="1.0.0.50204" />
+            <dependency id="shim" version="1.0.1.50204" />
         </dependencies>
     </metadata>
     <files>
