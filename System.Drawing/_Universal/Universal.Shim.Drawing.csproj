@@ -46,6 +46,9 @@
     <Compile Include="..\..\..\aforge\Sources\System.Drawing\Bitmap.cs">
       <Link>Bitmap.cs</Link>
     </Compile>
+    <Compile Include="..\..\..\aforge\Sources\System.Drawing\Brush.cs">
+      <Link>Brush.cs</Link>
+    </Compile>
     <Compile Include="..\..\..\aforge\Sources\System.Drawing\Color.cs">
       <Link>Color.cs</Link>
     </Compile>
@@ -82,8 +85,17 @@
     <Compile Include="..\..\..\aforge\Sources\System.Drawing\Extensions\Extend.PixelFormat.cs">
       <Link>Extensions\Extend.PixelFormat.cs</Link>
     </Compile>
+    <Compile Include="..\..\..\aforge\Sources\System.Drawing\Font.cs">
+      <Link>Font.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\aforge\Sources\System.Drawing\FontStyle.cs">
+      <Link>FontStyle.cs</Link>
+    </Compile>
     <Compile Include="..\..\..\aforge\Sources\System.Drawing\Graphics.cs">
       <Link>Graphics.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\aforge\Sources\System.Drawing\GraphicsUnit.cs">
+      <Link>GraphicsUnit.cs</Link>
     </Compile>
     <Compile Include="..\..\..\aforge\Sources\System.Drawing\Helpers\ColorModelHelper.cs">
       <Link>Helpers\ColorModelHelper.cs</Link>
@@ -163,6 +175,24 @@
     <Compile Include="..\..\..\aforge\Sources\System.Drawing\Imaging\ColorPalette.cs">
       <Link>Imaging\ColorPalette.cs</Link>
     </Compile>
+    <Compile Include="..\..\..\aforge\Sources\System.Drawing\Imaging\Encoder.cs">
+      <Link>Imaging\Encoder.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\aforge\Sources\System.Drawing\Imaging\EncoderParameter.cs">
+      <Link>Imaging\EncoderParameter.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\aforge\Sources\System.Drawing\Imaging\EncoderParameters.cs">
+      <Link>Imaging\EncoderParameters.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\aforge\Sources\System.Drawing\Imaging\EncoderParameterValueType.cs">
+      <Link>Imaging\EncoderParameterValueType.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\aforge\Sources\System.Drawing\Imaging\ImageCodecFlags.cs">
+      <Link>Imaging\ImageCodecFlags.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\aforge\Sources\System.Drawing\Imaging\ImageCodecInfo.cs">
+      <Link>Imaging\ImageCodecInfo.cs</Link>
+    </Compile>
     <Compile Include="..\..\..\aforge\Sources\System.Drawing\Imaging\ImageFormat.cs">
       <Link>Imaging\ImageFormat.cs</Link>
     </Compile>
@@ -208,11 +238,17 @@
     <Compile Include="..\..\..\aforge\Sources\System.Drawing\Rectangle.cs">
       <Link>Rectangle.cs</Link>
     </Compile>
+    <Compile Include="..\..\..\aforge\Sources\System.Drawing\RectangleF.cs">
+      <Link>RectangleF.cs</Link>
+    </Compile>
     <Compile Include="..\..\..\aforge\Sources\System.Drawing\Size.cs">
       <Link>Size.cs</Link>
     </Compile>
     <Compile Include="..\..\..\aforge\Sources\System.Drawing\SizeF.cs">
       <Link>SizeF.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\aforge\Sources\System.Drawing\SolidBrush.cs">
+      <Link>SolidBrush.cs</Link>
     </Compile>
     <Compile Include="..\..\..\aforge\Sources\System.Drawing\SystemColors.cs">
       <Link>SystemColors.cs</Link>
