@@ -22,6 +22,7 @@
 
 namespace System.Drawing
 {
+    using System.Drawing.Imaging;
     using System.IO;
     using System.Runtime.InteropServices;
 
@@ -34,13 +35,7 @@ namespace System.Drawing
     {
         #region METHODS
 
-        internal static Bitmap Create(Stream stream)
-        {
-            var androidBitmap = Android.Graphics.BitmapFactory.DecodeStream(stream);
-            return androidBitmap == null ? null : (Bitmap)androidBitmap;
-        }
-
-        internal void WriteTo(Stream stream, ImageFormat format)
+        public override void Save(Stream stream, ImageFormat format)
         {
             Android.Graphics.Bitmap.CompressFormat compressFormat;
             if (format.Equals(ImageFormat.Jpeg))
@@ -58,6 +53,17 @@ namespace System.Drawing
 
             var androidBitmap = (Android.Graphics.Bitmap)this;
             androidBitmap.Compress(compressFormat, 100, stream);
+        }
+
+        public override void Save(string filename, ImageCodecInfo encoder, EncoderParameters encoderParams)
+        {
+            throw new NotImplementedException("PCL");
+        }
+
+        internal static Bitmap Create(Stream stream)
+        {
+            var androidBitmap = Android.Graphics.BitmapFactory.DecodeStream(stream);
+            return androidBitmap == null ? null : (Bitmap)androidBitmap;
         }
 
         private static PixelFormat GetPixelFormat(Android.Graphics.Format androidPixelFormat)

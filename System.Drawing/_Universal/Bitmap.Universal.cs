@@ -37,34 +37,7 @@ namespace System.Drawing
     {
         #region METHODS
 
-        internal static Bitmap Create(Stream stream)
-        {
-            Bitmap bitmap = null;
-
-            Task.Run(async () =>
-            {
-                using (var raStream = new InMemoryRandomAccessStream())
-                {
-                    await stream.CopyToAsync(raStream.AsStream());
-                    var decoder = await BitmapDecoder.CreateAsync(raStream);
-                    var pixelData = await decoder.GetPixelDataAsync();
-
-                    var width = (int)decoder.OrientedPixelWidth;
-                    var height = (int)decoder.OrientedPixelHeight;
-                    const PixelFormat format = PixelFormat.Format32bppArgb;
-                    var bytes = pixelData.DetachPixelData();
-
-                    bitmap = new Bitmap(width, height, format);
-                    var data = bitmap.LockBits(new Rectangle(0, 0, width, height), ImageLockMode.ReadWrite, format);
-                    Marshal.Copy(bytes, 0, data.Scan0, bytes.Length);
-                    bitmap.UnlockBits(data);
-                }
-            }).Wait();
-
-            return bitmap;
-        }
-
-        internal void WriteTo(Stream stream, ImageFormat format)
+        public override void Save(Stream stream, ImageFormat format)
         {
             Guid encoderId;
             if (format.Equals(ImageFormat.Bmp))
@@ -116,6 +89,38 @@ namespace System.Drawing
                             await localStream.AsStreamForWrite().CopyToAsync(stream);
                         }
                     });
+        }
+
+        public override void Save(string filename, ImageCodecInfo encoder, EncoderParameters encoderParams)
+        {
+            throw new NotImplementedException("PCL");
+        }
+
+        internal static Bitmap Create(Stream stream)
+        {
+            Bitmap bitmap = null;
+
+            Task.Run(async () =>
+            {
+                using (var raStream = new InMemoryRandomAccessStream())
+                {
+                    await stream.CopyToAsync(raStream.AsStream());
+                    var decoder = await BitmapDecoder.CreateAsync(raStream);
+                    var pixelData = await decoder.GetPixelDataAsync();
+
+                    var width = (int)decoder.OrientedPixelWidth;
+                    var height = (int)decoder.OrientedPixelHeight;
+                    const PixelFormat format = PixelFormat.Format32bppArgb;
+                    var bytes = pixelData.DetachPixelData();
+
+                    bitmap = new Bitmap(width, height, format);
+                    var data = bitmap.LockBits(new Rectangle(0, 0, width, height), ImageLockMode.ReadWrite, format);
+                    Marshal.Copy(bytes, 0, data.Scan0, bytes.Length);
+                    bitmap.UnlockBits(data);
+                }
+            }).Wait();
+
+            return bitmap;
         }
 
         #endregion

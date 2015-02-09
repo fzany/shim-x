@@ -35,12 +35,7 @@ namespace System.Drawing
     {
         #region METHODS
 
-        internal static Bitmap Create(Stream stream)
-        {
-            return (Bitmap)UIImage.LoadFromData(NSData.FromStream(stream)).CGImage;
-        }
-
-        internal void WriteTo(Stream stream, ImageFormat format)
+        public override void Save(Stream stream, ImageFormat format)
         {
             var uiImage = new UIImage((CGImage)this);
 
@@ -61,7 +56,17 @@ namespace System.Drawing
             compressedImage.AsStream().CopyTo(stream);
         }
 
-        private static Bitmap GetTouchAdaptedBitmap (Bitmap bitmap)
+        public override void Save(string filename, ImageCodecInfo encoder, EncoderParameters encoderParams)
+        {
+            throw new NotImplementedException("PCL");
+        }
+
+        internal static Bitmap Create(Stream stream)
+        {
+            return (Bitmap)UIImage.LoadFromData(NSData.FromStream(stream)).CGImage;
+        }
+
+        private static Bitmap GetTouchAdaptedBitmap(Bitmap bitmap)
         {
             switch (bitmap._pixelFormat) {
             case PixelFormat.Format16bppGrayScale:
