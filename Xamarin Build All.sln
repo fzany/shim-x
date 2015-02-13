@@ -28,23 +28,32 @@ EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Release (Full)|Any CPU = Release (Full)|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{7E461552-1F3A-4A76-B87C-9F67120D6C18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7E461552-1F3A-4A76-B87C-9F67120D6C18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E461552-1F3A-4A76-B87C-9F67120D6C18}.Release (Full)|Any CPU.ActiveCfg = Release (Full)|Any CPU
+		{7E461552-1F3A-4A76-B87C-9F67120D6C18}.Release (Full)|Any CPU.Build.0 = Release (Full)|Any CPU
 		{7E461552-1F3A-4A76-B87C-9F67120D6C18}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7E461552-1F3A-4A76-B87C-9F67120D6C18}.Release|Any CPU.Build.0 = Release|Any CPU
 		{14EFA60A-ED78-46E7-9D3A-F52357A1D427}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{14EFA60A-ED78-46E7-9D3A-F52357A1D427}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14EFA60A-ED78-46E7-9D3A-F52357A1D427}.Release (Full)|Any CPU.ActiveCfg = Release (Full)|Any CPU
+		{14EFA60A-ED78-46E7-9D3A-F52357A1D427}.Release (Full)|Any CPU.Build.0 = Release (Full)|Any CPU
 		{14EFA60A-ED78-46E7-9D3A-F52357A1D427}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{14EFA60A-ED78-46E7-9D3A-F52357A1D427}.Release|Any CPU.Build.0 = Release|Any CPU
 		{93C4F43C-6343-4708-93C5-90360EB7E06A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{93C4F43C-6343-4708-93C5-90360EB7E06A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93C4F43C-6343-4708-93C5-90360EB7E06A}.Release (Full)|Any CPU.ActiveCfg = Release (Full)|Any CPU
+		{93C4F43C-6343-4708-93C5-90360EB7E06A}.Release (Full)|Any CPU.Build.0 = Release (Full)|Any CPU
 		{93C4F43C-6343-4708-93C5-90360EB7E06A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{93C4F43C-6343-4708-93C5-90360EB7E06A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EC17B0A8-70C5-4EB3-BE13-2BD1091EF9CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EC17B0A8-70C5-4EB3-BE13-2BD1091EF9CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC17B0A8-70C5-4EB3-BE13-2BD1091EF9CC}.Release (Full)|Any CPU.ActiveCfg = Release (Full)|Any CPU
+		{EC17B0A8-70C5-4EB3-BE13-2BD1091EF9CC}.Release (Full)|Any CPU.Build.0 = Release (Full)|Any CPU
 		{EC17B0A8-70C5-4EB3-BE13-2BD1091EF9CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EC17B0A8-70C5-4EB3-BE13-2BD1091EF9CC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection

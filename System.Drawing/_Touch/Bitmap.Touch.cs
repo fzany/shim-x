@@ -18,7 +18,6 @@
  *  You should have received a copy of the GNU General Public License
  *  along with Shim.NET.  If not, see <http://www.gnu.org/licenses/>.
  */
-#define EVALUATION
 
 namespace System.Drawing
 {
