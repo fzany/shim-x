@@ -20,11 +20,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Universal.Shim.Drawing", "S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unified.Shim.Drawing", "System.Drawing\_Unified\Unified.Shim.Drawing.csproj", "{EC17B0A8-70C5-4EB3-BE13-2BD1091EF9CC}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B96A2847-E817-4893-9C91-7796F6344D9A}"
-	ProjectSection(SolutionItems) = preProject
-		NuGet\shim.drawing.nuspec = NuGet\shim.drawing.nuspec
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
