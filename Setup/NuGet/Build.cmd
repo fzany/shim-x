@@ -29,3 +29,4 @@ echo Creating packages...
 forfiles /m *.nuspec /c "cmd /c nuget.exe pack @File -Version %version% -Properties shimver=%shimver% -OutputDirectory %output%"
 
 :eof
+pause
