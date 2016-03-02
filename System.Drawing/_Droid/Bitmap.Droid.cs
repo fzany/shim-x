@@ -1,5 +1,5 @@
 ﻿/*
- *  Copyright (c) 2013-2014, Cureos AB.
+ *  Copyright (c) 2013-2016, Cureos AB.
  *  All rights reserved.
  *  http://www.cureos.com
  *
@@ -24,8 +24,6 @@ namespace System.Drawing
     using System.Drawing.Imaging;
     using System.IO;
     using System.Runtime.InteropServices;
-
-    using Java.Nio;
 
     using ImageFormat = System.Drawing.Imaging.ImageFormat;
     using PixelFormat = System.Drawing.Imaging.PixelFormat;
@@ -148,21 +146,15 @@ namespace System.Drawing
 
             var width = adaptedBitmap._width;
             var height = adaptedBitmap._height;
-            var rowBytes = adaptedBitmap._stride;
+            var stride = adaptedBitmap._stride / 4;
+
+            var pixels = new int[height * stride];
+            Marshal.Copy(adaptedBitmap._scan0, pixels, 0, pixels.Length);
 
             var config = GetAndroidBitmapConfig(adaptedBitmap._pixelFormat);
 
             var androidBitmap = Android.Graphics.Bitmap.CreateBitmap(width, height, config);
-
-            var bytes = new byte[height * rowBytes];
-            Marshal.Copy(adaptedBitmap._scan0, bytes, 0, height * rowBytes);
-
-            using (var buffer = ByteBuffer.Allocate(bytes.Length))
-            {
-                buffer.Put(bytes);
-                buffer.Rewind();
-                androidBitmap.CopyPixelsFromBuffer(buffer);
-            }
+            androidBitmap.SetPixels(pixels, 0, stride, 0, 0, width, height);
 
 #if EVALUATION
             var textSize = (float)(width / 25);
@@ -185,17 +177,12 @@ namespace System.Drawing
 
             var pixelFormat = GetPixelFormat(androidBitmap.GetBitmapInfo().Format);
 
-            var bytes = new byte[height * rowBytes];
-            using (var buffer = ByteBuffer.Allocate(height * rowBytes))
-            {
-                androidBitmap.CopyPixelsToBuffer(buffer);
-                buffer.Rewind();
-                buffer.Get(bytes);
-            }
+            var pixels = new int[height * rowBytes / 4];
+            androidBitmap.GetPixels(pixels, 0, rowBytes / 4, 0, 0, width, height);
 
             unsafe
             {
-                fixed (byte* ptr = bytes)
+                fixed (int* ptr = pixels)
                 {
                     return new Bitmap(width, height, rowBytes, pixelFormat, (IntPtr)ptr);
                 }
