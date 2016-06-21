@@ -19,19 +19,19 @@
  *  along with Shim.NET.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+using System.Drawing.Imaging;
+using System.IO;
+using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
+
+using Windows.Graphics.Imaging;
+using Windows.Storage.Streams;
+using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
+
 namespace System.Drawing
 {
-    using System.Drawing.Imaging;
-    using System.IO;
-    using System.Runtime.InteropServices;
-    using System.Runtime.InteropServices.WindowsRuntime;
-    using System.Threading.Tasks;
-
-    using global::Windows.Graphics.Imaging;
-    using global::Windows.Storage.Streams;
-    using global::Windows.UI.Xaml.Media;
-    using global::Windows.UI.Xaml.Media.Imaging;
-
     public sealed partial class Bitmap
     {
         #region METHODS
@@ -61,7 +61,7 @@ namespace System.Drawing
             }
             else
             {
-                throw new ArgumentOutOfRangeException("format", format, "Unsupported bitmap encoding format");
+                throw new ArgumentOutOfRangeException(nameof(format), format, "Unsupported bitmap encoding format");
             }
 
             Task.Run(
@@ -87,7 +87,7 @@ namespace System.Drawing
                             localStream.Seek(0);
                             await localStream.AsStreamForWrite().CopyToAsync(stream);
                         }
-                    });
+                    }).Wait();
         }
 
         public override void Save(string filename, ImageCodecInfo encoder, EncoderParameters encoderParams)
