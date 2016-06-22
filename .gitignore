@@ -7,3 +7,5 @@
 *.dll.mdb
 
 *.userprefs
+.vs
+project.lock.json
