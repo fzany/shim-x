@@ -13,7 +13,7 @@
 This package contains evaluation DLL:s for Xamarin.iOS (Unified and Classic API:s), Xamarin Android and Windows Universal (Windows 8.1 and Windows Phone 8.1). Full versions can be purchased from Cureos, licenses@cureos.com .</description>
         <summary>Shim.Drawing provides a minimal subset of System.Drawing for AForge.NET and Accord.NET.</summary>
         <copyright>(c) 2013-2016 Anders Gustafsson, Cureos AB</copyright>
-        <releaseNotes>BREAKING CHANGE! Windows Phone 8/8.1 Silverlight no longer supported. Use Shim.Drawing 2.2.5.50209 or earlier for WP 8/8.1 Silverlight support.</releaseNotes>
+        <releaseNotes>Corrected Image.Save for Universal Windows</releaseNotes>
 		<language>en-US</language>
         <tags>PCL Shim System.Drawing .NET WPF UWP Windows8.1 WPA81 Xamarin iOS Android</tags>
         <dependencies>
