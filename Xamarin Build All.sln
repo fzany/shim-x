@@ -1,11 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30611.23
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shim.Drawing", "Shim.Drawing", "{BAC0CE2F-5E18-46BA-A2E5-5C26B3EE5D82}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Touch.Shim.Drawing", "System.Drawing\_Touch\Touch.Shim.Drawing.csproj", "{7E461552-1F3A-4A76-B87C-9F67120D6C18}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Droid.Shim.Drawing", "System.Drawing\_Droid\Droid.Shim.Drawing.csproj", "{14EFA60A-ED78-46E7-9D3A-F52357A1D427}"
 EndProject
@@ -15,8 +13,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{C76008
 		.nuget\NuGet.exe = .nuget\NuGet.exe
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Universal.Shim.Drawing", "System.Drawing\_Universal\Universal.Shim.Drawing.csproj", "{93C4F43C-6343-4708-93C5-90360EB7E06A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unified.Shim.Drawing", "System.Drawing\_Unified\Unified.Shim.Drawing.csproj", "{EC17B0A8-70C5-4EB3-BE13-2BD1091EF9CC}"
 EndProject
@@ -38,30 +34,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{7E461552-1F3A-4A76-B87C-9F67120D6C18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7E461552-1F3A-4A76-B87C-9F67120D6C18}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7E461552-1F3A-4A76-B87C-9F67120D6C18}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{7E461552-1F3A-4A76-B87C-9F67120D6C18}.Debug|ARM.Build.0 = Debug|Any CPU
-		{7E461552-1F3A-4A76-B87C-9F67120D6C18}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{7E461552-1F3A-4A76-B87C-9F67120D6C18}.Debug|x64.Build.0 = Debug|Any CPU
-		{7E461552-1F3A-4A76-B87C-9F67120D6C18}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{7E461552-1F3A-4A76-B87C-9F67120D6C18}.Debug|x86.Build.0 = Debug|Any CPU
-		{7E461552-1F3A-4A76-B87C-9F67120D6C18}.Release (Full)|Any CPU.ActiveCfg = Release (Full)|Any CPU
-		{7E461552-1F3A-4A76-B87C-9F67120D6C18}.Release (Full)|Any CPU.Build.0 = Release (Full)|Any CPU
-		{7E461552-1F3A-4A76-B87C-9F67120D6C18}.Release (Full)|ARM.ActiveCfg = Release (Full)|Any CPU
-		{7E461552-1F3A-4A76-B87C-9F67120D6C18}.Release (Full)|ARM.Build.0 = Release (Full)|Any CPU
-		{7E461552-1F3A-4A76-B87C-9F67120D6C18}.Release (Full)|x64.ActiveCfg = Release (Full)|Any CPU
-		{7E461552-1F3A-4A76-B87C-9F67120D6C18}.Release (Full)|x64.Build.0 = Release (Full)|Any CPU
-		{7E461552-1F3A-4A76-B87C-9F67120D6C18}.Release (Full)|x86.ActiveCfg = Release (Full)|Any CPU
-		{7E461552-1F3A-4A76-B87C-9F67120D6C18}.Release (Full)|x86.Build.0 = Release (Full)|Any CPU
-		{7E461552-1F3A-4A76-B87C-9F67120D6C18}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7E461552-1F3A-4A76-B87C-9F67120D6C18}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7E461552-1F3A-4A76-B87C-9F67120D6C18}.Release|ARM.ActiveCfg = Release|Any CPU
-		{7E461552-1F3A-4A76-B87C-9F67120D6C18}.Release|ARM.Build.0 = Release|Any CPU
-		{7E461552-1F3A-4A76-B87C-9F67120D6C18}.Release|x64.ActiveCfg = Release|Any CPU
-		{7E461552-1F3A-4A76-B87C-9F67120D6C18}.Release|x64.Build.0 = Release|Any CPU
-		{7E461552-1F3A-4A76-B87C-9F67120D6C18}.Release|x86.ActiveCfg = Release|Any CPU
-		{7E461552-1F3A-4A76-B87C-9F67120D6C18}.Release|x86.Build.0 = Release|Any CPU
 		{14EFA60A-ED78-46E7-9D3A-F52357A1D427}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{14EFA60A-ED78-46E7-9D3A-F52357A1D427}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{14EFA60A-ED78-46E7-9D3A-F52357A1D427}.Debug|ARM.ActiveCfg = Debug|Any CPU
@@ -86,30 +58,6 @@ Global
 		{14EFA60A-ED78-46E7-9D3A-F52357A1D427}.Release|x64.Build.0 = Release|Any CPU
 		{14EFA60A-ED78-46E7-9D3A-F52357A1D427}.Release|x86.ActiveCfg = Release|Any CPU
 		{14EFA60A-ED78-46E7-9D3A-F52357A1D427}.Release|x86.Build.0 = Release|Any CPU
-		{93C4F43C-6343-4708-93C5-90360EB7E06A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{93C4F43C-6343-4708-93C5-90360EB7E06A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{93C4F43C-6343-4708-93C5-90360EB7E06A}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{93C4F43C-6343-4708-93C5-90360EB7E06A}.Debug|ARM.Build.0 = Debug|Any CPU
-		{93C4F43C-6343-4708-93C5-90360EB7E06A}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{93C4F43C-6343-4708-93C5-90360EB7E06A}.Debug|x64.Build.0 = Debug|Any CPU
-		{93C4F43C-6343-4708-93C5-90360EB7E06A}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{93C4F43C-6343-4708-93C5-90360EB7E06A}.Debug|x86.Build.0 = Debug|Any CPU
-		{93C4F43C-6343-4708-93C5-90360EB7E06A}.Release (Full)|Any CPU.ActiveCfg = Release (Full)|Any CPU
-		{93C4F43C-6343-4708-93C5-90360EB7E06A}.Release (Full)|Any CPU.Build.0 = Release (Full)|Any CPU
-		{93C4F43C-6343-4708-93C5-90360EB7E06A}.Release (Full)|ARM.ActiveCfg = Release (Full)|Any CPU
-		{93C4F43C-6343-4708-93C5-90360EB7E06A}.Release (Full)|ARM.Build.0 = Release (Full)|Any CPU
-		{93C4F43C-6343-4708-93C5-90360EB7E06A}.Release (Full)|x64.ActiveCfg = Release (Full)|Any CPU
-		{93C4F43C-6343-4708-93C5-90360EB7E06A}.Release (Full)|x64.Build.0 = Release (Full)|Any CPU
-		{93C4F43C-6343-4708-93C5-90360EB7E06A}.Release (Full)|x86.ActiveCfg = Release (Full)|Any CPU
-		{93C4F43C-6343-4708-93C5-90360EB7E06A}.Release (Full)|x86.Build.0 = Release (Full)|Any CPU
-		{93C4F43C-6343-4708-93C5-90360EB7E06A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{93C4F43C-6343-4708-93C5-90360EB7E06A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{93C4F43C-6343-4708-93C5-90360EB7E06A}.Release|ARM.ActiveCfg = Release|Any CPU
-		{93C4F43C-6343-4708-93C5-90360EB7E06A}.Release|ARM.Build.0 = Release|Any CPU
-		{93C4F43C-6343-4708-93C5-90360EB7E06A}.Release|x64.ActiveCfg = Release|Any CPU
-		{93C4F43C-6343-4708-93C5-90360EB7E06A}.Release|x64.Build.0 = Release|Any CPU
-		{93C4F43C-6343-4708-93C5-90360EB7E06A}.Release|x86.ActiveCfg = Release|Any CPU
-		{93C4F43C-6343-4708-93C5-90360EB7E06A}.Release|x86.Build.0 = Release|Any CPU
 		{EC17B0A8-70C5-4EB3-BE13-2BD1091EF9CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EC17B0A8-70C5-4EB3-BE13-2BD1091EF9CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EC17B0A8-70C5-4EB3-BE13-2BD1091EF9CC}.Debug|ARM.ActiveCfg = Debug|Any CPU
@@ -163,11 +111,12 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{7E461552-1F3A-4A76-B87C-9F67120D6C18} = {BAC0CE2F-5E18-46BA-A2E5-5C26B3EE5D82}
 		{14EFA60A-ED78-46E7-9D3A-F52357A1D427} = {BAC0CE2F-5E18-46BA-A2E5-5C26B3EE5D82}
-		{93C4F43C-6343-4708-93C5-90360EB7E06A} = {BAC0CE2F-5E18-46BA-A2E5-5C26B3EE5D82}
 		{EC17B0A8-70C5-4EB3-BE13-2BD1091EF9CC} = {BAC0CE2F-5E18-46BA-A2E5-5C26B3EE5D82}
 		{64B5F3A1-A9A3-4540-B1E8-E334B88E908A} = {BAC0CE2F-5E18-46BA-A2E5-5C26B3EE5D82}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FE51119A-4656-454E-99B7-A542A67846BD}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = HelloAForgeDroid\HelloAForgeDroid.csproj
